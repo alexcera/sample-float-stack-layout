@@ -1,16 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Float Stack Layout</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-    
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h4>People Near you are booking Top Hotels in these favorite Cities.</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-2">
+                <div class="form-group">
+                    <label class="form-label" for="location">
+                        <small>LOCATION</small>
+                    </label>
+                    <select name="location" id="location">
+                        <option value="CLOSEST">Closest to me</option>
+                        <option value="POPULAR">Most popular destinations</option>
+                        <option value="DESTINATION">Choose a destination</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="form-group">
+                    <label class="form-label" for="star">
+                        <small>STAR RATING:</small>
+                    </label>
+                    <select name="star" id="star">
+                        <option value="3">3 Stars and above</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-1">
+                <div class="form-group">
+                    <label class="form-label" for="travelingin">
+                        <small>TRAVELING IN:</small>
+                    </label>
+                    <select name="travelingin" id="travelingin">
+                        <option value="3">3 weeks</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-1">
+                <div class="form-group">
+                    <label class="form-label" for="staying">
+                        <small>STAYING:</small>
+                    </label>
+                    <select name="staying" id="staying">
+                        <option value="3">3 nights</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-1">
+                <div class="form-group">
+                    <label class="form-label" for="checkin">
+                        <small>CHECK-IN ON:</small>
+                    </label>
+                    <select name="checkin" id="checkin">
+                        <option value="thur">thursday</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-5"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12"></div>
+    </div>
+
     <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="scripts/data.js"></script>
-    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </body>
+
 </html>
