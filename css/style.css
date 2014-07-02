@@ -2,3 +2,11 @@ label.form-label {
     font-size: 10px;
     font-style: normal;
 }
+
+.view-control {
+    height: 40px;
+    border: solid 1px 0 #4b5961;
+}
+
+.jumbotron .pull-left {
+}
