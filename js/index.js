@@ -1,21 +1,31 @@
 window.onload = function() {
+    var select = document.getElementById("location"),
+        container = document.querySelector(".result-container");
 
-    //get the default selected option
-    //load the results using the default option
+    dataRenderer.showData(DATA, select.options[select.selectedIndex].value, container);
 
-    //attach change handler on the location drop-down
-    var container = document.querySelector(".result-container");
-    dataRenderer.showData(DATA, "star_rating", container);
-
+    addEvent(select, "change", function() {
+        dataRenderer.showData(DATA, select.options[select.selectedIndex].value, container);
+    });
 };
 
+
+function addEvent(el, event_name, fn) {
+    //IE
+    if (el.attachEvent)
+        el.attachEvent("on" + event_name, function() {
+            fn.call(el);
+        });
+    else if (el.addEventListener)
+        el.addEventListener(event_name, fn, false);
+}
 
 var dataRenderer = (function(w) {
 
     function constructDOMFragment() {
 
         var fragment = document.createDocumentFragment();
-        for (var i = results.length - 1; i >= 0; i--)(function(r) {
+        for (var i = 0; i < results.length; i++)(function(r) {
 
             var div_container = document.createElement("div");
             div_container.className = "pull-left col-xs-4";
@@ -43,11 +53,27 @@ var dataRenderer = (function(w) {
             var div_caption_bottom = document.createElement("div");
             div_caption_bottom.className = "caption";
 
-            var h3_price = document.createElement("h3");
-            h3_price.className = "pull-right";
-            h3_price["innerHTML" || "textContent"] = r.price;
+            var starFragment = document.createDocumentFragment();
+            var stars = [];
+            for (var i = 5; i >= 1; i--) {
+                var star = document.createElement("span");
+                star.className = 5 - r.star_rating >= i ? "glyphicon glyphicon-star-empty" : "glyphicon glyphicon-star";
+                starFragment.appendChild(star);
+            };
+            div_caption_bottom.appendChild(starFragment);
 
-            div_caption_bottom.appendChild(h3_price);
+            var h3_deal_price = document.createElement("h3");
+            h3_deal_price.className = "pull-right";
+            if (r.price !== undefined && r.price && r.price != r.deal_price) {
+                var price = document.createElement("small");
+                var strikethrough = document.createElement("s");
+                strikethrough["innerHTML" || "textContent"] = r.currency + " " + r.price;
+                price.appendChild(strikethrough);
+                h3_deal_price.appendChild(price);
+            }
+            h3_deal_price.appendChild(document.createTextNode("  " + r.currency + " " + r.price));
+
+            div_caption_bottom.appendChild(h3_deal_price);
 
             var clearfix = document.createElement("div");
             clearfix.className = "clearfix";
@@ -57,19 +83,6 @@ var dataRenderer = (function(w) {
             fragment.appendChild(div_container);
 
         })(results[i]);
-
-        // "<div class=\"pull-left col-xs-4\">"
-        //     "<div class=\"thumbnail\">"
-        //         "<div class=\"caption\">"
-        //             "<h5>Miami</h5>"
-        //         "</div>"
-        //         "<img class=\"img-responsive\" src=\"\" alt=\"\">"
-        //         "<div class=\"caption\">"               
-        //             "<h3 class=\"pull-right\">$177</h3>"
-        //             "<div class=\"clearfix\"></div>"
-        //         "</div>"
-        //     "</div>"
-        // "</div>"
 
         var clearfix = document.createElement("div");
         clearfix.className = "clearfix";
@@ -89,9 +102,10 @@ var dataRenderer = (function(w) {
                 return a.dist - b.dist;
             });
         }
-
-        var f = constructDOMFragment();
-        container.appendChild(f);
+        while (container.hasChildNodes()) {
+            container.removeChild(container.firstChild);
+        }
+        container.appendChild(constructDOMFragment());
     };
 
     return {
