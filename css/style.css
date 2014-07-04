@@ -11,3 +11,7 @@ label.form-label {
 .result-container img {
     height: 200px;
 }
+
+.result-container .glyphicon {
+    color: #ff951b;
+}
