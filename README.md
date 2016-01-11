@@ -8,7 +8,7 @@
 
 ===
 #####Where can I see it?
-[Live Demo](http://xandercera.github.io/sample-float-stack-layout/)
+[Live Demo](http://jcera.github.io/sample-float-stack-layout/)
 
 ===
 #####Tech-Stack
